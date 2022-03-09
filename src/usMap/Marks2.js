@@ -15,7 +15,8 @@ const Marks = ({ data, cities, toolTip }) => {
         {
             data.features.map(feature => {
                 return (
-                <path
+                <path strokeWidth={1}
+                    stroke="#FFFFFF"
                     key={feature.properties.name}
                     d={path(feature)}
                 />

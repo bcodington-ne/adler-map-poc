@@ -8,7 +8,9 @@ function cleanCityData(data) {
     for(let city of data.content.locations) {
         let newCityObj = {
             //change this to actual city key when it comes out
-            cityName: city._meta.name,
+            cityName: city.companyName,
+            locationText: city.locationText,
+            locationDescription: city.locationDescription,
             lat: city.location.lat,
             long: city.location.lng
         }

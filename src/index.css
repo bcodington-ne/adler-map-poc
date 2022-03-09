@@ -12,11 +12,11 @@ code {
     monospace;
 }
 
-/* styling for world map */
+
+/* styling for us map */
 
 
 .marks path {
-  /* fill: #137B; */
   fill: #166FA5;
   stroke: white;
 }
