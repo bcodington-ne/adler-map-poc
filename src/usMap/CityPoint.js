@@ -1,29 +1,43 @@
-import React, {useState} from 'react'
+import { text } from 'd3';
+import React, {useState, useEffect} from 'react'
 
-function CityPoint({x, y, cityInfo}) {
-    const {cityName, locationText, locationDescription} = cityInfo;
+function CityPoint({x, y, cityInfo, id, textBoxInfo, setTextBoxInfo, openPointId}) {
+    const { cityName, locationText, locationDescription} = cityInfo;
     const [isClicked, setIsClicked] = useState(false)
-    function changeToolTip() {
-    
+
+    function shouldIBeOpen(id) {
+        console.log("shouldIBeOpen hitting")
+        if (isClicked && openPointId === id) setIsClicked(false)
+    }
+
+    useEffect(() => {
+        shouldIBeOpen(id)
+    }, [textBoxInfo])
+
+    function onClick(e) {
+        e.preventDefault();
+        const specificCityInfo = {
+            x,
+            y,
+            cityName,
+            locationText,
+            locationDescription,
+            id
+        }
+        if (isClicked) setTextBoxInfo(specificCityInfo);
+        if (!isClicked) setTextBoxInfo(specificCityInfo);
+
+        
         setIsClicked(!isClicked)
     }
 
-    {console.log('citttttttttt', cityName, y)}
 
+    console.log(id, openPointId === id)
     return (
-        <>      
-                {isClicked && <rect x={x - 125} y={(y  <= 150) ? y + 30 : y - 150 } fill="white" stroke="#166FA5" strokeWidth="2px" width="250" height="125" style={{"zIndex": "99"}}/>}
-                {isClicked && <> 
-                    <text x={x - 110} y={(y  <= 150) ? y + 60 : y - 120} fill="#166FA5">{cityName}</text>
-                    <text x={x - 110} y={(y  <= 150) ? y + 90 : y - 90} fill="#166FA5">{locationText}</text>
-                    <text x={x - 110} y={(y  <= 150) ? y + 120 : y - 60} fill="#166FA5">{locationDescription}</text>
-                </>
-                }
-                
-
-            <circle cx={x} cy={y} r={isClicked ? 12 : 10} fill="white" stroke="#166FA5" strokeWidth="2px" onClick={changeToolTip}/>
-            {isClicked && <circle cx={x} cy={y} r={7} fill="#166FA5" onClick={changeToolTip}/>}
-        </>
+        <g >      
+            <circle cx={x} cy={y} r={isClicked ? 12 : 10} fill="white" stroke="#166FA5" strokeWidth="2px" onClick={e => onClick(e)}/>
+            {(isClicked && openPointId === id) && <circle cx={x} cy={y} r={7} fill="#166FA5" onClick={e => onClick(e)}/>}
+        </g>
     )
 }
 

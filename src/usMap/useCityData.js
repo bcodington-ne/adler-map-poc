@@ -22,8 +22,6 @@ function cleanCityData(data) {
 const useCityData = () => {
     const [cities, setCities] = useState(null)
 
-    console.log("clean", cleanCityData(cityData))
-
     useEffect(() => {
         let cleanedCityData = cleanCityData(cityData);
         setCities(cleanedCityData)

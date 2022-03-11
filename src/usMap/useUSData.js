@@ -12,7 +12,6 @@ const useData = () => {
 
     useEffect(() => {
         json(jsonUrl).then(topojsonData => {
-            console.log("topojson", topojsonData)
             const {states} = topojsonData.objects;
             setData(feature(topojsonData, states))
         }) 
