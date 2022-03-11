@@ -24,7 +24,7 @@ function CityPoint({x, y, cityInfo, id, textBoxInfo, setTextBoxInfo, openPointId
             locationDescription,
             id
         }
-        if (isClicked) setTextBoxInfo(specificCityInfo);
+        if (isClicked) setTextBoxInfo(null);
         if (!isClicked) setTextBoxInfo(specificCityInfo);
 
         

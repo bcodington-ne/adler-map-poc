@@ -18,7 +18,9 @@ const Marks = ({ data, cities}) => {
     useEffect(() => {
         
         console.log("textbox in mark use", textBoxInfo)
-        if (textBoxInfo ) setOpenPointId(textBoxInfo.id)
+        if (textBoxInfo) setOpenPointId(textBoxInfo.id)
+
+        
     },[textBoxInfo])
 
     function openBox(id) {
